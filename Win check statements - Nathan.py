@@ -2,11 +2,11 @@
 #   once user input is recieved
     r = int(input("Row: "))
     c = int(input("Coloumn: "))
-    if r <= 3 and c <= 3:
+    if r <= 3 and c <= 3: # if the row and column specification is within range of the grid
         place = input("X or O? ")
     else:
         print("\nWhoa, sorry dude. Out of range.\n")
-        continue
+        continue # runs the input choice again if the user has chosen a spot out of the grid range
 
 #   Checks if a place in the game grid has already been filled
 #   from the last player's turn
