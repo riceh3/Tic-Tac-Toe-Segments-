@@ -1,9 +1,13 @@
 r1 = ["_", "_", "_"]
 r2 = ["_", "_", "_"]
 r3 = ["_", "_", "_"]
-
-
-
+.
+.
+.
+.
+.
+.
+.
 #   Prints the tic-tac-toe grid
     print('')
     print('\t\t', '\t'.join(r1), '\n')  |
