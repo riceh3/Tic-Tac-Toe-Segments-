@@ -4,7 +4,7 @@ Parts of Tic Tac Toe Game to be up loaded to overall Game
 To Do :
 
 - Game Board Function - DONE(hannah)
-- Start Menu, (Instructions)
+- Start Menu, (Instructions) - DONE(hannah)
 - Player 1 and Player 2 variables - DONE(nathan & adapted for board by Hannah)  
 - Select one player or two player options 
 - AI function (play against the computer)
