@@ -11,6 +11,8 @@ name = input("Hey whats your name?")
 print("Hi there, " + name + " have you played this game before")
 confirm = input("type yes or no")
 
+
+
 # Instruction Menu
 
 if confirm == "no":
@@ -46,11 +48,23 @@ def grid():
     print (board[6], " | ", board[7], " | ", board[8])
 
 grid()
+
+# Ai for one player - Hannah
+
     
 #   The program checks if the specified row and column is out of range,
 #   once user input is recieved - Nathan
 
 while True:
+# Ai for one player - Hannah
+""" This will generate a random number between zero and eight, then be used as player two box"""
+    global playerTwo
+    import random
+    def computer():
+        import random
+        playerTwo = random.randint(0,8)
+
+        
     playerOne = input("Player 1 pick a box")
     playerOne = int(playerOne)
     
