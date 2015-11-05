@@ -40,8 +40,11 @@ if players == "1":
     print("you will now play against the computer")
 elif players == "2":
     print("Two players")
-else:
+if players != "1" and players != "2":
     print("Sorry that is not an option ")
+else:
+    print("Lets Play")
+    
     
 print(name + " is player one")
 
@@ -78,8 +81,6 @@ def grid():
     print ("---------------")
     print (board[6], " | ", board[7], " | ", board[8])
 
-grid()
-
 
 if players == "2":
     print(name + " you are x")
@@ -89,6 +90,7 @@ elif players == "1":
     print("the computer is o")
 else:
     print("restart the game")
+    
 
 # Ai for one player - Hannah
 
@@ -98,6 +100,8 @@ else:
 
 
 while True:
+
+    
     if players == "2":
         print(name + "turn")
         playerOne = input("pick a box")
@@ -137,10 +141,16 @@ while True:
         else:
             computer()
             grid()
+
+    if players != "1" and players != "2":
+        print("Sorry that is not an option")
+        break 
+    
     else:
         print(" Next go")
 
 #Win Conditions
+
     oneWins = (name + " WINS!")
     twoWins = ("PLAYER TWO WINS")
 
