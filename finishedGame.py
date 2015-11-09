@@ -7,27 +7,23 @@ print(" Tic Tac Toe")
 name = input("Hey whats your name?")
 
 print("Hi there, " + name + " have you played this game before")
-confirm = input("type yes or no")
+confirm = input("type Y (yes) or N (no)")
 
 # If selection is yes then the instruction will not be shown, whereas if selection is no then the instructions will be shown
 
 
 # Instruction Menu
 
-if confirm == "no":
-    print ("Not to worry here are the instruction")
+if confirm == "N" or confirm == "n": # <--------nathan's remodification 2
+    print ("\nNot to worry here are the instructions:")
 
-    print(" The Game will ask you to select a box on the grid, where you want to place your 'x' or '0'")
-    print(" A guid of the grid will appear at the start of the game")
+    print(" The Game will ask you to select a box on the grid, where you want to place your 'x' or '0'".center(80))
+    print(" A guid of the grid will appear at the start of the game".center(80))
 
-    print(" You will then enter your 'x' or '0', and it will place the mark")
+    print(" You will then enter your 'x' or '0', and it will place the mark".center(80))
 
-    print("The aim of the game, is to get your mark to fill three boxes in a row")
-yes = "yes"
-for y in yes:
-    if confirm == "yes":
-        continue
-else:
+    print(" The aim of the game, is to get your mark to fill three boxes in a row".center(80))
+elif confirm == "Y" or confirm == "y": # <--------nathan's remodification 3
     print("Lets Play")
 
 # Selction of number of players for menu - Hannah
@@ -201,11 +197,4 @@ while True:
     grid()
 
 
-    
-
-
-
 # runs the input choice again if the user has chosen a spot out of the grid range
-
-
-
