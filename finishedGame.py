@@ -99,7 +99,7 @@ while True:
 
     
     if players == "2":
-        print(name + " turn")
+        print(name + "'s turn")
         playerOne = input("pick a box")
         playerOne = int(playerOne)
         if board[playerOne] != "x" and board[playerOne] != "0":
@@ -118,7 +118,7 @@ while True:
         grid()
 
     elif players == "1":
-        print(name + " turn")
+        print(name + "'s turn")
         playerOne = input(" Pick a box")
         playerOne = int(playerOne)
         if board[playerOne] != "x" and board[playerOne] != "0":
