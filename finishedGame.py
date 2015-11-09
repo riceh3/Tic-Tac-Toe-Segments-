@@ -1,16 +1,15 @@
 # This is the full game of Tic Tac Toe : all segements uploaded will be
 #  - uploaded to this file to run the full game.
 
-# Game Menu - Hannah 
+# Game Introduction
 
 print(" Tic Tac Toe")
 name = input("Hey whats your name?")
 
-#takes user name and asigns to player one
-
 print("Hi there, " + name + " have you played this game before")
 confirm = input("type yes or no")
 
+# If selection is yes then the instruction will not be shown, whereas if selection is no then the instructions will be shown
 
 
 # Instruction Menu
@@ -48,16 +47,14 @@ else:
     
 print(name + " is player one")
 
-# Then instructions will only show if the user selects that they have not
-# - playerd the game before
 
-# Game Board - Hannah
+# Game Board 
 board = [0,1,2,
          3,4,5,
          6,7,8,
         ]
 
-# Ai for one player - Hannah
+# Ai for one player 
 """ This will generate a random number between zero and eight, then be used as player two box"""
 
 global playerTwo
@@ -81,6 +78,8 @@ def grid():
     print ("---------------")
     print (board[6], " | ", board[7], " | ", board[8])
 
+# Assigns players there mark 
+
 
 if players == "2":
     print(name + " you are x")
@@ -92,22 +91,23 @@ else:
     print("restart the game")
     
 
-# Ai for one player - Hannah
-
-    
-#   The program checks if the specified row and column is out of range,
-#   once user input is recieved - Nathan
-
 grid()
+
+
+
+# Turn input and selction ...
 while True:
+
+    ex = ("x")
+    zero = ("o")
 
     
     if players == "2":
-        print(name + "turn")
+        print(name + " turn")
         playerOne = input("pick a box")
         playerOne = int(playerOne)
         if board[playerOne] != "x" and board[playerOne] != "0":
-            board[playerOne] = input("X or O? ")
+            board[playerOne] = ex
         else:
             print("\nWhoa, sorry dude. Out of range.\n")
         grid()
@@ -116,7 +116,7 @@ while True:
         playerTwo = input("Pick a box")
         playerTwo = int(playerTwo)
         if board[playerTwo] != "x" and board[playerTwo] != "0":
-            board[playerTwo] = input("x or 0")
+            board[playerTwo] = zero
         else:
             print("\nPlace is already taken. Try again\n")
         grid()
@@ -126,7 +126,7 @@ while True:
         playerOne = input(" Pick a box")
         playerOne = int(playerOne)
         if board[playerOne] != "x" and board[playerOne] != "0":
-            board[playerOne] = input(" type your mark")
+            board[playerOne] = ex
         else:
             print("That box is taken")
         grid()
@@ -136,7 +136,7 @@ while True:
         compTwo = aiPlayer
         compTwo = int(compTwo)
         if board[compTwo] != "x" and board[compTwo] != "0":
-            board[compTwo] = input("type 0 ")
+            board[compTwo] = zero
             grid()
         else:
             computer()
