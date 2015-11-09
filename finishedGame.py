@@ -98,7 +98,7 @@ else:
 #   The program checks if the specified row and column is out of range,
 #   once user input is recieved - Nathan
 
-
+grid()
 while True:
 
     
@@ -136,7 +136,7 @@ while True:
         compTwo = aiPlayer
         compTwo = int(compTwo)
         if board[compTwo] != "x" and board[compTwo] != "0":
-            board[compTwo] = input("type 0")
+            board[compTwo] = input("type 0 ")
             grid()
         else:
             computer()
