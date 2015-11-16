@@ -1,33 +1,34 @@
 # This is the full game of Tic Tac Toe : all segements uploaded will be
-#  - uploaded to this file to run the full game.
+#  This is the full Game of Tic Tac Toe: all segments  uploaded will be
+# - uploaded to this file to run the full game.
 
 # Game Introduction
 
-print("Tic Tac Toe") # <-------- Nathan's mod 1
-name = input("Hey whats your name? ") # <-------- Nathan's mod 2
+print(" Tic Tac Toe") # <------- Nathan's mod 1
+name = input("Hey whats your name?")# < -------- Nathan's mod 2 
 
-print("Hi there, " + name + " have you played this game before", end="")
-confirm = input(" (type Y or N): ") # <-------- Nathan's mod 2
+print("Hi there, " + name + " have you played this game before", end = "")
+confirm = input("type Y or N")# <------- Nathan's mod 3
 
 # If selection is yes then the instruction will not be shown, whereas if selection is no then the instructions will be shown
 
 
 # Instruction Menu
 
-if confirm == "N" or confirm == "n": # <-------- Nathan's mod 4
-    print ("\nNot to worry here are the instructions:")
+if confirm == "N" or confirm == "n":  # <------ Nathan's mod 4
+    print ("\nNot to worry here are the instruction:")
     print(" The Game will ask you to select a box on the grid, where you want to place your 'x' or '0'")
     print(" A guid of the grid will appear at the start of the game")
     print(" You will then enter your 'x' or '0', and it will place the mark")
-    print(" The aim of the game, is to get your mark to fill three boxes in a row")
+    print("The aim of the game, is to get your mark to fill three boxes in a row")
 
-elif confirm == "Y" or confirm == "y": # <-------- Nathan's mod 5
-    print("Lets Play")
+elif confirm == "Y" or confirm == "y": # <------ Nathan's mod 5 
+    print ("Lets Play")
 
 # Selction of number of players for menu - Hannah
 # Leads to 2 player or one player code
 
-players = input("\nHow many players, type 1 or 2 ") # <-------- Nathan's mod 6
+players = input("\nHow many players, type 1 or 2")# <----- Nathan's mod 6
 
 if players == "1":
     print("you will now play against the computer")
@@ -41,16 +42,11 @@ else:
     
 print(name + " is player one")
 
-# Game board with reference numebrs
-board_Intro = [0,1,2,
+
+# Game Board 
+board = [0,1,2,
          3,4,5,
          6,7,8,
-        ]
-
-# Game Board # <-------- Nathan's mod 7
-board = [" "," "," ",
-         " "," "," ",
-         " "," "," ",
         ]
 
 # Ai for one player 
@@ -68,50 +64,46 @@ def computer():
     aiPlayer = random.choice(ai)
 
     
-
-"""~~~~~~~~~~~~~ The Board Function ~~~~~~~~~~~~~""" # <-------- Nathan's mod 8
-def grid_Intro(): # board displays reference numbers for each place
-    print ('\t\t', board_Intro[0], " │ ", board_Intro[1], " │ ", board_Intro[2])
-    print ('\t\t', "━━━━━━━━")
-    print ('\t\t', board_Intro[3], " │ ", board_Intro[4], " │ ", board_Intro[5])
-    print ('\t\t', "━━━━━━━━")
-    print ('\t\t', board_Intro[6], " │ ", board_Intro[7], " │ ", board_Intro[8])
-
-def grid(): # official grid for live game
-    print ('\t\t', board[0], " │ ", board[1], " │ ", board[2])
-    print ('\t\t', "━━━━━━━━")
-    print ('\t\t', board[3], " │ ", board[4], " │ ", board[5])
-    print ('\t\t', "━━━━━━━━")
-    print ('\t\t', board[6], " │ ", board[7], " │ ", board[8])
-"""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
+        
+""" ~~~~~~~~~~The Board Function ~~~~~~~~~~~~~ """ # <----- Nathan's mod 
+def grid(): # board displays reference numbers for each place
+    print ('\t\t', board[0], " | ", board[1], " | ", board[2])
+    print ('\t\t', "---------------")
+    print ('\t\t', board[3], " | ", board[4], " | ", board[5])
+    print ('\t\t', "---------------")
+    print ('\t\t', board[6], " | ", board[7], " | ", board[8])
 
 # Assigns players there mark 
 
 
-grid_Intro()
-
 if players == "2":
-    print(name + " you are X")
-    print("player 2 is O")
+    print(name + " you are x")
+    print("player 2 is 0")
 elif players == "1":
-    print(name + " you are X")
-    print("the computer is O")
+    print(name + " you are x")
+    print("the computer is o")
 else:
     print("restart the game")
+    
+
+grid()
+
+
+
     
 
 # Turn input and selction ...
 while True:
 
-    ex = ("X")
-    zero = ("O")
+    ex = ("x")
+    zero = ("o")
 
     
-    if players == "2": # Nathan: evaluates if the game mode is between two live players, then the following statements are carried out
+    if players == "2": # evaluates if the game mode is between two live players is carried out
         print(name + "'s turn")
         playerOne = input("pick a box")
         playerOne = int(playerOne)
-        if board[playerOne] != "X" and board[playerOne] != "0":
+        if board[playerOne] != "x" and board[playerOne] != "0":
             board[playerOne] = ex
         else:
             print("\nWhoa, sorry dude. Out of range.\n")
@@ -120,17 +112,17 @@ while True:
         print("Player 2 turn")
         playerTwo = input("Pick a box")
         playerTwo = int(playerTwo)
-        if board[playerTwo] != "X" and board[playerTwo] != "0":
+        if board[playerTwo] != "x" and board[playerTwo] != "0":
             board[playerTwo] = zero
         else:
             print("\nPlace is already taken. Try again\n")
         grid()
 
-    elif players == "1": # Nathan: evaluates if the game mode is between one player and the computer, then the following statements are carried out
+    elif players == "1": # evaluates if the game mode is between one player and the computer
         print(name + "'s turn")
         playerOne = input(" Pick a box")
         playerOne = int(playerOne)
-        if board[playerOne] != "X" and board[playerOne] != "0":
+        if board[playerOne] != "x" and board[playerOne] != "0":
             board[playerOne] = ex
         else:
             print("That box is taken")
@@ -140,7 +132,7 @@ while True:
         computer()
         compTwo = aiPlayer
         compTwo = int(compTwo)
-        if board[compTwo] != "X" and board[compTwo] != "0":
+        if board[compTwo] != "x" and board[compTwo] != "0":
             board[compTwo] = zero
             grid()
         else:
@@ -149,7 +141,7 @@ while True:
 
     if players != "1" and players != "2":
         print("Sorry that is not an option")
-        break
+        break 
     
     else:
         print(" Next go")
@@ -159,48 +151,58 @@ while True:
     oneWins = (name + " WINS!")
     twoWins = ("PLAYER TWO WINS")
 
-    if board[0] == "X" and board[1] == "X" and board[2] == "X":
+    if board[0] == "x" and board[1] == "x" and board[2] == "x":
         grid()
         print(oneWins)
-    elif board[0] == "O" and board[1] == "O" and board[2] == "O":
+    elif board[0] == "o" and board[1] == "o" and board[2] == "o":
         grid()
         print(twoWins)
-    if board[0] == "X" and board[3] == "X" and board[6] == "X":
+    if board[0] == "x" and board[3] == "x" and board[6] == "x":
         grid()
         print(oneWins)
-    elif board[0] == "O" and board[3] == "O" and board[6] == "O":
+    elif board[0] == "o" and board[3] == "o" and board[6] == "o":
         grid()
         print(twoWins)
-    if board[0] == "X" and board[4] == "X" and board[8] == "X":
+    if board[0] == "x" and board[4] == "x" and board[8] == "x":
         grid()
         print(oneWins)
-    elif board[0] == "O" and board[4] == "O" and board[8] == "O":
+    elif board[0] == "o" and board[4] == "o" and board[8] == "o":
         grid()
         print(twoWins)
-    if board[3] == "X" and board[4] == "X" and board[5] == "X":
+    if board[3] == "x" and board[4] == "x" and board[5] == "x":
         grid()
         print(oneWins)
-    elif board[3] == "O" and board[4] == "O" and board[5] == "O":
+    elif board[3] == "o" and board[4] == "o" and board[5] == "o":
         grid()
         print(twoWins)
-    if board[6] == "X" and board[7] == "X" and board[8] == "X":
+    if board[6] == "x" and board[7] == "x" and board[8] == "x":
         grid()
         print(oneWins)
-    elif board[6] == "O" and board[7] == "O" and board[8] == "O":
+    elif board[6] == "o" and board[7] == "o" and board[8] == "o":
         grid()
         print(twoWins)
-    if board[1] == "X" and board[4] == "X" and board[7] == "X":
+    if board[1] == "x" and board[4] == "x" and board[7] == "x":
         grid()
         print(oneWins)
-    elif board[1] == "O" and board[4] == "O" and board[7] == "O":
+    elif board[1] == "o" and board[4] == "o" and board[7] == "o":
         grid()
         print(twoWins)
-    if board[2] == "X" and board[5] == "X" and board[8] == "X":
+    if board[2] == "x" and board[5] == "x" and board[8] == "x":
         grid()
         print(oneWins)
-    elif board[2] == "O" and board[5] == "O" and board[8] == "O":
+    elif board[2] == "o" and board[5] == "o" and board[8] == "o":
         grid()
         print(twoWins)
+
+
+    grid()
+
+
+    
+
 
 
 # runs the input choice again if the user has chosen a spot out of the grid range
+
+
+
