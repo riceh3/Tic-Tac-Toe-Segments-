@@ -3,6 +3,7 @@
 ##===========================GAME CODE SETUP===================================
 import sys
 import random
+import winsound
 from time import sleep
 
 # Introductory game board with reference numebrs
@@ -77,6 +78,7 @@ elif players == "2":
     print("Two players")
 if players != "1" and players != "2":
     print("Sorry that is not an option ")
+    winsound.PlaySound("*", winsound.SND_ALIAS)
 else:
     print("Lets Play")
     
@@ -111,6 +113,7 @@ while True:
             board[playerOne] = ex
         else:
             print("\nWhoa, sorry dude. Out of range.\n")
+            winsound.PlaySound("*", winsound.SND_ALIAS)
         grid()
         
         print("Player 2 turn", end=" - ")
@@ -120,6 +123,7 @@ while True:
             board[playerTwo] = zero
         else:
             print("\nPlace is already taken. Try again\n")
+            winsound.PlaySound("*", winsound.SND_ALIAS)
         grid()
 
 ##  execution of the game in PLAYER VS COMPUTER mode
@@ -129,13 +133,16 @@ while True:
         playerOne = int(playerOne)
         if board[playerOne] != "X" and board[playerOne] != "0":
             board[playerOne] = ex
+            winsound.Beep(32767, 500)
         else:
             print("That box is taken")
+            winsound.PlaySound("*", winsound.SND_ALIAS)
             continue
         grid()
         
         print("The computers turn")
         sleep(4) # the delay in seconds before computer takes its turn
+        winsound.Beep(32767, 500)
         computer()
         compTwo = aiPlayer
         compTwo = int(compTwo)
@@ -148,6 +155,7 @@ while True:
 
     if players != "1" and players != "2":
         print("Sorry that is not an option")
+        winsound.PlaySound("*", winsound.SND_ALIAS)
         break
     
     else:
