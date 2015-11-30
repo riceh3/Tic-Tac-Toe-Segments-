@@ -9,6 +9,6 @@ To Do :
 - Select one player or two player options -  DONE(Hannah)
 - AI function (play against the computer) - DONE(Hannah)
 - Play against other person on one computer (2) player  DONE(Hannah)
-- Win Conditons (eg:  if box 1,2,3, = x = player x wins , etc) 
+- Win Conditons (eg:  if box 1,2,3, = x = player x wins , etc) DONE(Nathan)
 - end the game 
 
