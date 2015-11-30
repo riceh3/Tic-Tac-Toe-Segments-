@@ -1,6 +1,6 @@
 """This is the full game of Tic Tac Toe: all segements uploaded will be uploaded to this file to run the full game."""
 
-##===========================GAME CODE SETUP===================================
+##===========================G A M E   C O D E   S E T U P===================================
 import sys
 import random
 import winsound
@@ -16,8 +16,9 @@ board = [" "," "," ",
          " "," "," ",
          " "," "," "]
 
-## The Board (Grid) Function
+## Board (Grid) Functions
 def grid_Intro():
+    
     """Introductory board displaying reference numbers for each place"""
     print ('\t\t', board_Intro[0], " │ ", board_Intro[1], " │ ", board_Intro[2])
     print ('\t\t', "━━━━━━━━")
@@ -27,15 +28,17 @@ def grid_Intro():
     print("")
 
 def grid():
+    
     """Official grid for the live game"""
     print ('\t\t', board[0], " │ ", board[1], " │ ", board[2])
     print ('\t\t', "━━━━━━━━")
     print ('\t\t', board[3], " │ ", board[4], " │ ", board[5])
     print ('\t\t', "━━━━━━━━")
     print ('\t\t', board[6], " │ ", board[7], " │ ", board[8])
-    print("")
+    print("") # leaves a gap between game board and next written instruction
 
-# Ai for one player 
+# AI for one player
+
 """ This will generate a random number between zero and eight, then be used as player two box"""
 global playerTwo
 global aiPlayer
@@ -46,17 +49,91 @@ def computer():
     aiPlayer = ()
     aiPlayer = random.choice(ai)
 
-##===========================GAME CODE BODY===================================
+##  Win Conditions
+
+def wincheck():
+    import winResults as win
+    
+    oneWins = (name.upper() + win.WINS())
+    twoWins = (win.PLAYER2)
+
+    # for "X" inputs
+    if board[0] == "X" and board[1] == "X" and board[2] == "X":     # Horiztonal checks for 'X'
+        print(oneWins)
+        sys.exit()
+    elif board[3] == "X" and board[4] == "X" and board[5] == "X":
+        print(oneWins)
+        sys.exit()
+    elif board[6] == "X" and board[7] == "X" and board[8] == "X":
+        print(oneWins)
+        sys.exit()
+    elif board[0] == "X" and board[3] == "X" and board[6] == "X":   # Vertical checks for 'X'
+        print(oneWins)
+        sys.exit()
+    elif board[1] == "X" and board[4] == "X" and board[7] == "X":
+        print(oneWins)
+        sys.exit()
+    elif board[2] == "X" and board[5] == "X" and board[8] == "X":
+        print(oneWins)
+        sys.exit()
+    elif board[0] == "X" and board[4] == "X" and board[8] == "X":   # Diagonal checks for 'X'
+        print(oneWins)
+        sys.exit()
+    elif board[2] == "X" and board[4] == "X" and board[6] == "X":
+        print(oneWins)
+        sys.exit()
+
+##  Win Conditions for "O" inputs
+    if board[0] == "O" and board[1] == "O" and board[2] == "O":     # Horiztonal checks for 'O'
+        print(twoWins)
+        sys.exit()
+    elif board[3] == "O" and board[4] == "O" and board[5] == "O":
+        print(twoWins)
+        sys.exit()
+    elif board[6] == "O" and board[7] == "O" and board[8] == "O":
+        print(twoWins)
+        sys.exit()
+    elif board[0] == "O" and board[3] == "O" and board[6] == "O":   # Vertical checks for 'O'
+        print(twoWins)
+        sys.exit()
+    elif board[1] == "O" and board[4] == "O" and board[7] == "O":
+        print(twoWins)
+        sys.exit()
+    elif board[2] == "O" and board[5] == "O" and board[8] == "O":
+        print(twoWins)
+        sys.exit()
+    elif board[0] == "O" and board[4] == "O" and board[8] == "O":   # Diagonal checks for 'O'
+        print(twoWins)
+        sys.exit()
+    elif board[2] == "O" and board[4] == "O" and board[6] == "O":
+        print(twoWins)
+        sys.exit()
+
+##===========================G A M E   C O D E   B O D Y===================================
 
 # Game Introduction
+Title = [" ______   __     ______        ",
+         "/\__  _\ /\ \   /\  ___\       ",
+         "\/_/\ \/ \ \ \  \ \ \____      ",
+         "   \ \_\  \ \_\  \ \_____\     ",
+         "    \/_/   \/_/   \/_____/     ",
+         " ______   ______     ______    ",
+         "/\__  _\ /\  __ \   /\  ___\   ",
+         "\/_/\ \/ \ \  __ \  \ \ \____  ",
+         "   \ \_\  \ \_\ \_\  \ \_____\ ",
+         "    \/_/   \/_/\/_/   \/_____/ ",
+         " ______   ______     ______    ",
+         "/\__  _\ /\  __ \   /\  ___\   ",
+         "\/_/\ \/ \ \ \/\ \  \ \  __\   ",
+         "   \ \_\  \ \_____\  \ \_____\ ",
+         "    \/_/   \/_____/   \/_____/"]
 
-print("Tic Tac Toe")
+print("\n".join(Title), end="\t")
 name = input("Hey whats your name? ")
-
 print("Hi there, " + name + " have you played this game before", end="")
 confirm = input(" (type Y or N): ")
 
-# If selection is yes (Y) then the instruction will not be shown, whereas if selection is no (N) then the instructions will be shown
+# If selection is no (N) the game instructions are shown, otherwise the game begins
 
 if confirm == "N" or confirm == "n": # <-------- Nathan's mod 4
     #Instruction menu
@@ -66,7 +143,7 @@ if confirm == "N" or confirm == "n": # <-------- Nathan's mod 4
     print(" You will then enter your 'x' or '0', and it will place the mark")
     print(" The aim of the game, is to get your mark to fill three boxes in a row")
 
-elif confirm == "Y" or confirm == "y": # <-------- Nathan's mod 5
+elif confirm == "Y" or confirm == "y":
     print("Lets Play")
 
 # Selction of number of players for menu - Hannah
@@ -85,7 +162,7 @@ else:
     
 print(name + " is player one")
 
-grid_Intro() #calls function to display introductory board before game starts
+grid_Intro() #calls the function to display board with ref. numbers before game starts
 
 # Assigns players their mark 
 if players == "2":
@@ -99,137 +176,72 @@ else:
     
 
 # Turn input and selction ...
-while True:
+while True: # to enable repetition of turn-taking between players and reversion for certain stages during the game
 
     ex = ("X")
     zero = ("O")
 
 ##  execution of the game in TWO PLAYER mode
     if players == "2":
-        print(name + "'s turn", end=" - ")
-        playerOne = input("Pick a box: ")
-        playerOne = int(playerOne)
-        if board[playerOne] != "X" and board[playerOne] != "0": # Checks if place is taken
-            board[playerOne] = ex
-        else:
+        playerOne = int(input(name + "'s turn, pick a box: "))
+        if board[playerOne] == "X" or board[playerOne] == "O": # Checks if a spot in the grid is taken
+            print("\nPlace is already taken. Try again\n")
+            continue                                           # runs the input choice again if the user has chosen a spot already
+        elif playerOne > len(board)-1:                         # check if input is our of grid range
             print("\nWhoa, sorry dude. Out of range.\n")
-            winsound.PlaySound("*", winsound.SND_ALIAS)
-        grid()
-        
-        print("Player 2 turn", end=" - ")
-        playerTwo = input("Pick a box: ")
-        playerTwo = int(playerTwo)
-        if board[playerTwo] != "X" and board[playerTwo] != "0":
-            board[playerTwo] = zero
+            winsound.PlaySound("*", winsound.SND_ALIAS)            
+            continue                                           # runs the input choice again if the user has chosen a spot out of the grid range
         else:
+            board[playerOne] = ex
+        grid()
+        wincheck()
+        
+        playerTwo = int(input("Player 2 turn, pick a box: "))
+        if board[playerTwo] == "X" or board[playerTwo] == "O": # Checks if a spot in the grid is taken
             print("\nPlace is already taken. Try again\n")
             winsound.PlaySound("*", winsound.SND_ALIAS)
+            continue                                           # runs the input choice again if the user has chosen a spot already
+        elif playerTwo > len(board)-1:                         # check if input is our of grid range
+            print("\nWhoa, sorry dude. Out of range.\n")            
+            continue                                           # runs the input choice again if the user has chosen a spot out of the grid range
+        else:
+            board[playerTwo] = zero
         grid()
+        wincheck()
 
 ##  execution of the game in PLAYER VS COMPUTER mode
     elif players == "1":
-        print(name + "'s turn", end=" - ")
-        playerOne = input("Pick a box: ")
-        playerOne = int(playerOne)
-        if board[playerOne] != "X" and board[playerOne] != "0":
-            board[playerOne] = ex
-            winsound.Beep(32767, 500)
-        else:
-            print("That box is taken")
-            winsound.PlaySound("*", winsound.SND_ALIAS)
+        playerOne = int(input(name + "'s turn, pick a box: "))
+        try:
+            if board[playerOne] == "X" or board[playerOne] == "O":
+                print("That box is taken")
+                winsound.PlaySound("*", winsound.SND_ALIAS)
+                continue
+            else:
+                board[playerOne] = ex
+                winsound.Beep(32767, 500)
+        except IndexError:
+            print("\nWhoa, sorry dude. Out of range.\n")            
             continue
         grid()
+        wincheck()
         
         print("The computers turn")
-        sleep(4) # the delay in seconds before computer takes its turn
+        sleep(3) # the delay in seconds before computer takes its turn
         winsound.Beep(32767, 500)
         computer()
-        compTwo = aiPlayer
-        compTwo = int(compTwo)
-        if board[compTwo] != "X" and board[compTwo] != "0":
+        compTwo = int(aiPlayer)
+        if board[compTwo] != "X" and board[compTwo] != "O":
             board[compTwo] = zero
             grid()
         else:
             computer()
             grid()
+        wincheck()
 
     if players != "1" and players != "2":
         print("Sorry that is not an option")
         winsound.PlaySound("*", winsound.SND_ALIAS)
         break
-    
     else:
         print(" Next go")
-
-##  Win Conditions for "X" inputs
-    oneWins = (name + " WINS!")
-    twoWins = ("PLAYER TWO WINS")
-
-    if board[0] == "X" and board[1] == "X" and board[2] == "X":     # Horiztonal checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[3] == "X" and board[4] == "X" and board[5] == "X":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[6] == "X" and board[7] == "X" and board[8] == "X":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[0] == "X" and board[3] == "X" and board[6] == "X":   # Vertical checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[1] == "X" and board[4] == "X" and board[7] == "X":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[2] == "X" and board[5] == "X" and board[8] == "X":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[0] == "X" and board[4] == "X" and board[8] == "X":   # Diagonal checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[2] == "X" and board[4] == "X" and board[6] == "X":
-        grid()
-        print(oneWins)
-        sys.exit()
-
-##  Win Conditions for "0" inputs
-    if board[0] == "0" and board[1] == "0" and board[2] == "0":     # Horiztonal checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[3] == "0" and board[4] == "0" and board[5] == "0":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[6] == "0" and board[7] == "0" and board[8] == "0":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[0] == "0" and board[3] == "0" and board[6] == "0":   # Vertical checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[1] == "0" and board[4] == "0" and board[7] == "0":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[2] == "0" and board[5] == "0" and board[8] == "0":
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[0] == "0" and board[4] == "0" and board[8] == "0":   # Diagonal checks for 'X'
-        grid()
-        print(oneWins)
-        sys.exit()
-    elif board[2] == "0" and board[4] == "0" and board[6] == "0":
-        grid()
-        print(oneWins)
-        sys.exit()
-
-# runs the input choice again if the user has chosen a spot out of the grid range
