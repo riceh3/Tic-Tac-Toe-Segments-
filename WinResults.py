@@ -24,7 +24,7 @@ def WINS():
     asciiArt[0] = '\n' + asciiArt[0]
     Wins = "\n".join(asciiArt)
     return Wins
-
+    
 def PLAYER2():
     """function for displaying message if the win conditions are met for player 2 or the computer"""
     asciiArt = ["██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗     ██████╗ ",
