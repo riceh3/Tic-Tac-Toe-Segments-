@@ -6,12 +6,12 @@ import sys                               # Allows use to close the system at the
 import random                            # Used for the AI box selection. 
 import socket, select, pickle            # Used for Server. 
 from time import sleep                   # Allows time gap between players turns.
-global a                                 # Can refference variable a within all functions.
-global b                                 # Can refference variable b within all functions.
+global a                                 # Can reference variable a within all functions.
+global b                                 # Can reference variable b within all functions.
 import winsound                          # Can use built in sounds throughout the game.
-global playerTwo                         # Can refference variable playerTwo in all functions
-global aiPlayer                          # Can refference variable aiPlayer in all functions
-import WinResults as win
+global playerTwo                         # Can reference variable playerTwo in all functions
+global aiPlayer                          # Can reference variable aiPlayer in all functions
+import winResults as win                 # imports module with congratulatory messages
 
 
 
@@ -22,7 +22,7 @@ board_Intro = [0,1,2,
                3,4,5,
                6,7,8]
 
-def grid_Intro():                                                                                         # Introductory game board, with refference numbers.
+def grid_Intro():                                                                                         # Introductory game board, with reference numbers.
     
     """Introductory board displaying reference numbers for each place"""
     
@@ -39,7 +39,9 @@ def grid_Intro():                                                               
 
                                                       # Official game board.
 
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+board = [" ", " ", " ",
+         " ", " ", " ",
+         " ", " ", " "]
 
 def grid():
     
@@ -47,7 +49,7 @@ def grid():
     
     print ("")                                                                                           # Allows a gap before the board.
     print ("")
-    print ('\t\t',"              ", board[0], " │ ", board[1], " │ ", board[2])                          # Each line is centered in the middle of the window.                  
+    print ('\t\t',"              ", board[0], " │ ", board[1], " │ ", board[2])                          # Each line is centered in the middle of the window.
     print ('\t\t',"              ", "━━━━━━━━")
     print ('\t\t',"              ", board[3], " │ ", board[4], " │ ", board[5])
     print ('\t\t',"              ", "━━━━━━━━")
@@ -61,12 +63,12 @@ class Connect:
     """Client connection for playerOne"""
         
     
-    global secondGo                      # Can reffernece method secondGo within the class.                      
-    global a                             # Can refference variable a in all methods.
+    global secondGo                      # Can reference method secondGo within the class.                      
+    global a                             # Can reference variable a in all methods.
 
     def __init__(self):                  # Initialization that runs each time the class is called.
         
-        global a                         # Can refference variable a in all methods.
+        global a                         # Can reference variable a in all methods.
         
         
         
@@ -81,12 +83,12 @@ class Connect2:
     """Client connection for playerTwo"""
             
         
-    global secondGo                      # Can refference method secondGo within the class.
-    global b                             # Can refference variable b in all methods.
+    global secondGo                      # Can reference method secondGo within the class.
+    global b                             # Can reference variable b in all methods.
 
     def __init__(self):                  # Initialization that runs each time the class is called.
         
-        global b                         # Can refference variable b in all methods.
+        global b                         # Can reference variable b in all methods.
         
         
         self.playerTwoConnect = socket.socket()                                                          # Creat socket for Connection.
@@ -102,99 +104,83 @@ class FirstGo(Connect):
     """Two players online, allows connection and turns"""
 
           
-    global b                            # Can refference variable b within the class, (allows messages to be sent and recieved to client)
-    global a                            # Can refference variable a within the class, (allows messages to be sent and recieved to client)
+    global b                            # Can reference variable b within the class, (allows messages to be sent and recieved to client)
+    global a                            # Can reference variable a within the class, (allows messages to be sent and recieved to client)
     
-    global secondGo                     # Can refference method within the class.
-    global secondGo2                    # Can refference method within the class.
+    global secondGo                     # Can reference method within the class.
+    global secondGo2                    # Can reference method within the class.
     
-    global winFirstGo                   # Can refference the  player one win conditons method, from all methods within the class.
-    global winFirstGo2                  # Can refference the player two win conditions method, from all methods within the class.
+    global winFirstGo                   # Can reference the  player one win conditons method, from all methods within the class.
+    global winFirstGo2                  # Can reference the player two win conditions method, from all methods within the class.
     
 
     def winFirstGo(self):
 
         """Win conditions for player one online"""
           
-        oneWins = win.WINS()                                                        # Win Display, from imported module.
+        oneWins = win.WINS()                                                        # Display win message for player 1, from imported module.
         
         if board[0] == "X" and board[1] == "X" and board[2] == "X":                 # Row one check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
         elif board[3] == "X" and board[4] == "X" and board[5] == "X":               # Row two check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
         elif board[6] == "X" and board[7] == "X" and board[8] == "X":               # Row three check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
-        elif board[0] == "X" and board[3] == "X" and board[6] == "X":               # Collumn one check.
+        elif board[0] == "X" and board[3] == "X" and board[6] == "X":               # column one check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
-        elif board[1] == "X" and board[4] == "X" and board[7] == "X":               # Collumn two check.
+        elif board[1] == "X" and board[4] == "X" and board[7] == "X":               # column two check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
-        elif board[2] == "X" and board[5] == "X" and board[8] == "X":               # Collumn three check.        
+        elif board[2] == "X" and board[5] == "X" and board[8] == "X":               # column three check.        
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
         elif board[0] == "X" and board[4] == "X" and board[8] == "X":               # Diagonal check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
         elif board[2] == "X" and board[4] == "X" and board[6] == "X":               # Diagonal check (other diagonal posibility)
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player One Wins")
             print(oneWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
@@ -204,87 +190,71 @@ class FirstGo(Connect):
 
         """Win Conditions for player two online"""
         
-        twoWins = win.PLAYER2()                                                     # Win Display, from imported module.
+        twoWins = win.PLAYER2()                                                     # Display win message for player 2, from imported module.
         
         if board[0] == "0" and board[1] == "0" and board[2] == "0":                 # Row one check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
         elif board[3] == "0" and board[4] == "0" and board[5] == "0":               # Row two check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
         elif board[6] == "0" and board[7] == "0" and board[8] == "0":               # Row three check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
-        elif board[0] == "0" and board[3] == "0" and board[6] == "0":               # Collumn one check.
+        elif board[0] == "0" and board[3] == "0" and board[6] == "0":               # column one check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
             
-        elif board[1] == "0" and board[4] == "0" and board[7] == "0":               # Collumn two check.
+        elif board[1] == "0" and board[4] == "0" and board[7] == "0":               # column two check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
-        elif board[2] == "0" and board[5] == "0" and board[8] == "0":               # Collumn three check.
+        elif board[2] == "0" and board[5] == "0" and board[8] == "0":               # column three check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
             
         elif board[0] == "0" and board[4] == "0" and board[8] == "0":               # Diagonal check.
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
             
         elif board[2] == "0" and board[4] == "0" and board[6] == "0":               # Diagonal check (other posibility)
             grid()                                                                  # Displays the grid, to show that the player has won.
-            
             print("\n" + '\t\t' + "              Player Two wins")
             print(twoWins)                                                          # Win Display.
             print("\n" + '\t\t' + "             Disconnected")                      # Tells the players that they are now disconnected.
-            
             sys.exit()                                                              # Exits the game, after they have won.
 
-        secondGo(self)                                                              # If player two hasn't won, it will cal player ones turn.
+        secondGo(self)                                                              # If player two hasn't won, it will call player ones turn.
             
             
             
@@ -293,10 +263,10 @@ class FirstGo(Connect):
         """Player one turn online"""
 
         
-        global a                                                                   # Variable a can be refferenced from Connect class.
-        global secondGo2                                                           # Method can be refferenced within class.
-        global winFirstGo                                                          # Method can be refferenced within class.
-        global winFirstGo2                                                         # Method can be refferenced within class.
+        global a                                                                   # Variable a can be referenced from Connect class.
+        global secondGo2                                                           # Method can be referenced within class.
+        global winFirstGo                                                          # Method can be referenced within class.
+        global winFirstGo2                                                         # Method can be referenced within class.
         
         print('\t\t' + "               Player One Turn")                           # Each time the method is called, will state player one turn for users.
         a.send(b'Pick a Box')                                                      # Sends a message to player one through client, requesting input.
@@ -353,10 +323,10 @@ class FirstGo(Connect):
         """Player two turn online"""
 
         
-        global winFirstGo2                                                         # Method win confditions for player two can be refferenced.
-        global winFirstGo                                                          # Method win conditions can be refferenced. 
-        global secondGo                                                            # Method can be refferenced. 
-        global b                                                                   # Variable b can be refferenced. Used to send messages to player two.
+        global winFirstGo2                                                         # Method win confditions for player two can be referenced.
+        global winFirstGo                                                          # Method win conditions can be referenced. 
+        global secondGo                                                            # Method can be referenced. 
+        global b                                                                   # Variable b can be referenced. Used to send messages to player two.
 
         
         print('\t\t' + "               Player Two Turn")                           # Will show the users that it is player two turn.
@@ -412,12 +382,12 @@ class FirstGo(Connect):
     def __init__(self):                                                            # Initialisation, happens when the class is called.
 
     
-        global winFirstGo2                                                         # Method can be refferenced.
-        global winFirstGo                                                          # Method can be refferenced.
-        global b                                                                   # Global can be refferenced.
-        global a                                                                   # Global can be refferenced.
-        global secondGo                                                            # Method can be refferenced.
-        global secondGo2                                                           # Method cna be refferenced.
+        global winFirstGo2                                                         # Method can be referenced.
+        global winFirstGo                                                          # Method can be referenced.
+        global b                                                                   # Global can be referenced.
+        global a                                                                   # Global can be referenced.
+        global secondGo                                                            # Method can be referenced.
+        global secondGo2                                                           # Method cna be referenced.
         
         Connect.__init__(self)                                                     # Inherit from Connection class, to establish connection to player one.
         
@@ -488,9 +458,9 @@ class FirstGo(Connect):
 
 def onePlayerWin1():
     
-    """Win conditions for player one - One player"""
+    """Win conditions for player one - One-player mode"""
     
-    oneWins = win.WINS()                                                           # When called will call function from imported module, (win display).
+    oneWins = win.WINS()                                                           # When called, this will call function from imported module, (win display).
     
     
     if board[0] == "X" and board[1] == "X" and board[2] == "X":                    # Check row one.
@@ -508,17 +478,17 @@ def onePlayerWin1():
         print(oneWins)                                                             # Shows win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[0] == "X" and board[3] == "X" and board[6] == "X":                  # Check collumn one.
+    elif board[0] == "X" and board[3] == "X" and board[6] == "X":                  # Check column one.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[1] == "X" and board[4] == "X" and board[7] == "X":                  # Check collumn two.
+    elif board[1] == "X" and board[4] == "X" and board[7] == "X":                  # Check column two.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[2] == "X" and board[5] == "X" and board[8] == "X":                  # Check collumn three.
+    elif board[2] == "X" and board[5] == "X" and board[8] == "X":                  # Check column three.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display.  
         sys.exit()                                                                 # The programme ends.
@@ -538,7 +508,7 @@ def onePlayerWin1():
 
 def onePlayerWin2():
 
-    """Win conditions for player two - One player"""
+    """Win conditions for player two - One-player mode"""
     
     twoWins = win.PLAYER2()                                                        # When called function from imported module is shown, (win display).
     
@@ -558,17 +528,17 @@ def onePlayerWin2():
         print(twoWins)                                                             # Show win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[0] == "0" and board[3] == "0" and board[6] == "0":                  # Check collumn one.
+    elif board[0] == "0" and board[3] == "0" and board[6] == "0":                  # Check column one.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display. 
         sys.exit()                                                                 # The programme ends.
         
-    elif board[1] == "0" and board[4] == "0" and board[7] == "0":                  # Check collumn two.
+    elif board[1] == "0" and board[4] == "0" and board[7] == "0":                  # Check column two.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[2] == "0" and board[5] == "0" and board[8] == "0":                  # Check collumn three.
+    elif board[2] == "0" and board[5] == "0" and board[8] == "0":                  # Check column three.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display.
         sys.exit()                                                                 # The programme ends.
@@ -607,17 +577,17 @@ def twoPlayerWin1():
         print(oneWins)                                                             # Shows win display. 
         sys.exit()                                                                 # The programme ends.
         
-    elif board[0] == "X" and board[3] == "X" and board[6] == "X":                  # Check collumn one.
+    elif board[0] == "X" and board[3] == "X" and board[6] == "X":                  # Check column one.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[1] == "X" and board[4] == "X" and board[7] == "X":                  # Check collumn two.
+    elif board[1] == "X" and board[4] == "X" and board[7] == "X":                  # Check column two.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display. 
         sys.exit()                                                                 # The programme ends.
         
-    elif board[2] == "X" and board[5] == "X" and board[8] == "X":                  # Check collumn three.
+    elif board[2] == "X" and board[5] == "X" and board[8] == "X":                  # Check column three.
         print("\n" + '\t\t' + "              Player One Wins")
         print(oneWins)                                                             # Shows win display.
         sys.exit()                                                                 # The programme ends.
@@ -656,17 +626,17 @@ def twoPlayerWin2():
         print(twoWins)                                                             # Show win display. 
         sys.exit()                                                                 # The programme ends.
         
-    elif board[0] == "0" and board[3] == "0" and board[6] == "0":                  # Check collumn one.
+    elif board[0] == "0" and board[3] == "0" and board[6] == "0":                  # Check column one.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[1] == "0" and board[4] == "0" and board[7] == "0":                  # Check collumn two.
+    elif board[1] == "0" and board[4] == "0" and board[7] == "0":                  # Check column two.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display.
         sys.exit()                                                                 # The programme ends.
         
-    elif board[2] == "0" and board[5] == "0" and board[8] == "0":                  # Check collumn three.
+    elif board[2] == "0" and board[5] == "0" and board[8] == "0":                  # Check column three.
         print("\n" + '\t\t' + "              Player Two wins")
         print(twoWins)                                                             # Show win display. 
         sys.exit()                                                                 # The programme ends.
@@ -702,7 +672,7 @@ def title():
              "                            \/_/   \/_/\/_/   \/_____/ ",
              "                         ______   ______     ______    ",
              "                        /\__  _\ /\  __ \   /\  ___\   ",
-             "                        \/_/\ \/ \ \ \/\ \  \ \  __ \  ",
+             "                        \/_/\ \/ \ \ \/\ \  \ \  ___\  ",
              "                           \ \_\  \ \_____\  \ \_____\ ",
              "                            \/_/   \/_____/   \/_____/ ",
              "                                                       ",
@@ -712,7 +682,8 @@ def title():
     
     print("\n".join(Title), end="\t")                                              # Shows the Title in the centre of the window.
 
-    
+##===========================G A M E   C O D E   B O D Y=============================================================
+
 def start():
     
     """Game Menu"""
@@ -726,12 +697,12 @@ def start():
         
         print("")                                                                                       
         print("\n" + '\t\t' + "                   INSTRUCTIONS:")                                       
-        print("\n" + '\t\t' + "   The Game will ask you to select a box on the grid,")
+        print("\n" + '\t\t' + "   The Game will ask you to select a 1767 on the grid,")
         print("\n" + '\t\t' + "        where you want to place your 'x' or '0'")                        # Game Intructions, centered and space left so title can be- 
         print("\n" + '\t\t' + "  A guid of the grid will appear at the start of the game")              # - shown.
         print("\n" + '\t\t' + "You will then enter your mark, and it will place the mark")
         print("\n" + '\t\t' + "The aim of the game, is to get your mark to fill three ")
-        print("\n" + '\t\t' + "                  boxes in a row")
+        print("\n" + '\t\t' + "                  1767es in a row")
         print(" ")
         print(" ")
         print(" ")
@@ -755,7 +726,7 @@ def start():
 
 def playerSelection():
 
-    """The user selects how many player, and starts the game"""
+    """The user selects how many player (to set game mode), and starts the game"""
     
     players = input('\t\t' + "  How many players, type 1 or 2, (Type '1' or '2')")                      # Requests user input for number of players.
     
@@ -801,14 +772,14 @@ def playerSelection():
 
 def twoPlayer1():
     
-    """Player One Turn - Two players offline"""
+    """Player One Turn - Two-player mode offline"""
     
     ex = ("X")                                                                                         # Automatically inputs 'X' for player one.
  
     while True:
         
         try:                                                                                           # Attempt to execute code.
-            playerOne = int(input("\n" + '\t\t' +"       Player One turn, pick a box"))                # Requests user input.
+            playerOne = int(input("\n" + '\t\t' +"       Player One turn, pick a box: "))              # Requests user input.
             
             if board[playerOne] == "X" or board[playerOne] == "0":                                     # If box is already taken, input is not allowed. 
                 print("\n" + '\t\t' + "         Box is already taken.Try again")
@@ -829,14 +800,14 @@ def twoPlayer1():
 
 def twoPlayer2():
 
-    """Player two turn - Two players offline"""
+    """Player two turn - Two-player mode offline"""
     
     zero = ("0")                                                                                       # Automatically enters '0' when called.
     
     while True:
         try:                                                                                           # Attempt to execute the following code.
             
-            playerTwo = int(input("\n" + '\t\t' +"       Player 2 turn, pick a box"))                  # Requests user input.
+            playerTwo = int(input("\n" + '\t\t' +"       Player 2 turn, pick a box: "))                # Requests user input.
             
             if board[playerTwo] == "X" or board[playerTwo] == "0":                                     # If box is already taken, input not allowed.
                 print("\n" + '\t\t' + "     Place is already taken. Try again")
@@ -851,12 +822,12 @@ def twoPlayer2():
             
         except IndexError:                                                                             # If chosen box is out of range, input is not accepted.
             print("\n" + '\t\t' + "        Whoa, sorry dude. Out of range")
-            winsound.PlaySound("*", winsound.SND_ALIAS)                                                # Play sound. 
+            winsound.PlaySound("*", winsound.SND_ALIAS)                                                # Plays sound. 
             continue
 
 def onePlayer():
 
-    """Users One turn - One player"""
+    """Users One turn - One-player mode"""
     
     ex = ("X")                                                                                         # Automatically enters 'X' when called.
     
@@ -872,7 +843,7 @@ def onePlayer():
             
             else:
                 board[playerOne] = ex                                                                  # Automatically enter 'X' in chosen box.
-                winsound.Beep(32767, 500)                                                              # Play sound.
+                winsound.Beep(1767, 500)                                                               # Play sound.
                 
         except IndexError:                                                                             # If user is out of range.
             print("\n" + '\t\t' + "          Whoa, sorry dude. Out of range")                  
@@ -883,9 +854,9 @@ def onePlayer():
         
 def computerTurn():
 
-    """Computer turn - One player"""
+    """Computer's turn - One-player mode"""
     
-    global aiPlayer                                                       # Allows variable to be refferneced.
+    global aiPlayer                                                       # Allows variable to be reference.
     
     zero = ("0")                                                          # Automatically enters '0', when called.
     ai = [0,1,2,3,4,5,6,7,8]                                              # Range of numbers that the computer can chose between.
@@ -894,10 +865,10 @@ def computerTurn():
     aiPlayer = random.choice(ai)                                          # Computer chooses random number from the given list.
     
     while True:
-        print("\n" + '\t\t' + "             The Computers Turn")          # Tells the user that it is the computers turn. 
+        print("\n" + '\t\t' + "             The Computer's Turn")         # Tells the user that it is the computers turn. 
         sleep(3)                                                          # Allows 3 second gap for the computers turn.
         
-        winsound.Beep(32767, 500)                                         # Play sound.
+        winsound.Beep(1767, 500)                                          # Plays sound.
         compTwo = int(aiPlayer)                                           # Chosen listen element is converted to int, so can be used to pick a box on board.
         
         if board[compTwo] != "X" and board[compTwo] != "0":               # Checks that the box is free.
@@ -905,20 +876,13 @@ def computerTurn():
             
         grid()                                                            # Show the grid to the user, showing where the computer entered '0'.                                       
         onePlayerWin2()                                                   # Checks if the computer has won.
-    
-    
 
-        
-            
 
-                
-    
-  
+
 start()                                                                  # Starts the program, by calling the start menu.  
 
-                
 
 
-            
-            
-        
+
+
+
