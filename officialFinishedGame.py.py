@@ -702,7 +702,7 @@ def start():
         print("\n" + '\t\t' + "  A guid of the grid will appear at the start of the game")              # - shown.
         print("\n" + '\t\t' + "You will then enter your mark, and it will place the mark")
         print("\n" + '\t\t' + "The aim of the game, is to get your mark to fill three ")
-        print("\n" + '\t\t' + "                  1767es in a row")
+        print("\n" + '\t\t' + "                  boxes in a row")
         print(" ")
         print(" ")
         print(" ")
