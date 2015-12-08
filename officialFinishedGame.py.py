@@ -91,7 +91,7 @@ class Connect2:
         global b                         # Can reference variable b in all methods.
         
         
-        self.playerTwoConnect = socket.socket()                                                          # Creat socket for Connection.
+        self.playerTwoConnect = socket.socket()                                                          # Create socket for Connection.
         port = 23456                                                                                     # Port for player two to connect to.
         self.playerTwoConnect = socket.socket(socket.AF_INET, socket.SOCK_STREAM)                        # Address family's for the socket, defines the socket type.
         self.playerTwoConnect.bind(('', port))                                                           # Bind the socket to the port.
@@ -696,13 +696,13 @@ def start():
     if confirm == "No" or confirm == "no" or confirm == "n" or confirm == "NO" or confirm == "N":       # Various ways the user can say no.
         
         print("")                                                                                       
-        print("\n" + '\t\t' + "                   INSTRUCTIONS:")                                       
-        print("\n" + '\t\t' + "   The Game will ask you to select a 1767 on the grid,")
-        print("\n" + '\t\t' + "        where you want to place your 'x' or '0'")                        # Game Intructions, centered and space left so title can be- 
-        print("\n" + '\t\t' + "  A guid of the grid will appear at the start of the game")              # - shown.
-        print("\n" + '\t\t' + "You will then enter your mark, and it will place the mark")
-        print("\n" + '\t\t' + "The aim of the game, is to get your mark to fill three ")
-        print("\n" + '\t\t' + "                  boxes in a row")
+        print("INSTRUCTIONS:".center(80))                                       
+        print("The Game will ask you to select a box on the grid,".center(80))
+        print("where you want to place your 'x' or '0'".center(80))                                     # Game Intructions, centered and space left so title can be- 
+        print("A guid of the grid will appear at the start of the game".center(80))                     # - shown.
+        print("You will then enter your mark, and it will place the mark".center(80))
+        print("The aim of the game, is to get your mark to fill three ".center(80))
+        print("boxes in a row".center(80))
         print(" ")
         print(" ")
         print(" ")
@@ -880,7 +880,6 @@ def computerTurn():
 
 
 start()                                                                  # Starts the program, by calling the start menu.  
-
 
 
 
